@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue To Do List</title>
+    <!--CDN font awesome-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!--/CDN font awesome-->
+    <!--CDN Bootstrap-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <!--/CDN Bootstrap-->
+    <!--file css-->
+    <link rel="stylesheet" href="css/style.css">
+    <!--/file css-->
+</head>
+<body>
+    <!--spazio per manipolazione vuejs-->
+    <div id="app" v-cloak> 
+        <!--header-->
+        <header>
+            <div class="container">
+                <h1 class="text-center">TO DO APP</h1>
+            </div>
+        </header>
+        <!--/header-->
+
+        <!--main-->
+        <main>
+            <div class="container">
+                <!--input genera to do + bottone-->
+                <label for="text-todo" class="mb-2">Inserisci il tuo prossimo To Do</label>
+                <div class="input-group mb-3">
+                    <input 
+                        v-model="newTodo" 
+                        id="text-todo" 
+                        type="text" 
+                        class="form-control" 
+                        placeholder="es. Comprare le uova per la torta">
+                    <button 
+                        @click="addTodo" 
+                        class="btn btn-info" 
+                        type="button" 
+                        id="buttonAdd">
+                        Aggiungi
+                    </button>
+                </div>
+                <!--/input genera to do + bottone-->
+
+                <!--lista to do-->
+                <ul class="list-group">
+                    <li class="list-group-item" v-for="todo in todos"> 
+                        <div class="d-flex justify-content-between align-items-center">{{ todo.text }}
+                            <span v-if="todos.done === true" :class="completed">{{ todos.text }}</span>
+                            <span v-else>{{ todos.text }}</span><i @click="deleteTodo" role="button" class="fa-solid fa-xmark"></i>
+                        </div>
+                    </li>
+                    <!-- <li class="list-group-item">Portare Blue dal veterinario</li>
+                    <li class="list-group-item">Aggiornare appunti Javascript</li>
+                    <li class="list-group-item">Sentire Daria per venerdì sera</li>
+                    <li class="list-group-item">Chiamare alle 20.30 papà</li>
+                    <li class="list-group-item">Fare esercizio "Vue to do list"</li> -->
+                </ul>
+                <!--lista to do-->
+            </div>
+        </main>
+        <!--main-->
+    </div>
+    <!--/spazio per manipolazione vuejs-->
+    <!--vuejs-->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <!--/vuejs-->
+    <!--file js-->
+    <script src="js/myscript.js"></script>
+    <!--/file js-->
+</body>
+</html>
