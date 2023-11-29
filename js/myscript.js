@@ -9,7 +9,6 @@ const { createApp } = Vue
   createApp({
     data() {
       return {
-        completed: 'line-through',
         newTodo : '',
         todos : [
           {
@@ -36,13 +35,20 @@ const { createApp } = Vue
       }
     },
     methods : {
+      checkStatus(check) {
+        if(check === true) return 'text-decoration-line-through';
+      },
       addTodo (){
-        this.todos.push(this.newTodo);
-        this.newTodo = '';
+        if (this.newTodo.trim() !== '') {
+          this.todos.push({
+            text: this.newTodo,
+            done: false
+          }),
+        this.newTodo = ''};
       },
       deleteTodo (index) {
         console.log('cancella todo',index);
         this.todos.splice(index, 1);
-      }
+      },
     }
   }).mount('#app')
