@@ -50,10 +50,20 @@
                 <!--/input genera to do + bottone-->
 
                 <!--lista to do-->
-                <ul class="list-group">
-                    <li v-for="(todo, index) in todos" class="list-group-item d-flex justify-content-between align-items-center"> 
-                        <div>{{index + 1}} - {{ todo.text }}</div>
-                        <i @click="deleteTodo" role="button" class="fa-solid fa-xmark"></i>
+                <ul class="list-group" v-if="todos.length > 0">
+                    <li 
+                        v-for="(todo, index) in todos" 
+                        class="list-group-item d-flex justify-content-between align-items-center"
+                        :class="checkStatus(todo.done)"
+                        @click="doneModifier(index)"> 
+                        <div>
+                            {{index + 1}} - {{ todo.text }}
+                        </div>
+                        <i 
+                            @click="deleteTodo" 
+                            role="button" 
+                            class="fa-solid fa-xmark">
+                        </i>
                     </li>
                     <!-- <li class="list-group-item">Portare Blue dal veterinario</li>
                     <li class="list-group-item">Aggiornare appunti Javascript</li>
@@ -61,6 +71,7 @@
                     <li class="list-group-item">Chiamare alle 20.30 papà</li>
                     <li class="list-group-item">Fare esercizio "Vue to do list"</li> -->
                 </ul>
+                <div v-else class="alert alert-info">Non ci sono più cosa da portare a termine</div>
                 <!--lista to do-->
             </div>
         </main>

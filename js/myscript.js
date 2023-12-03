@@ -50,5 +50,8 @@ const { createApp } = Vue
         console.log('cancella todo',index);
         this.todos.splice(index, 1);
       },
+      doneModifier (index) {
+        (this.todos[index].done) ? (this.todos[index].done = false) : (this.todos[index].done = true);
+      }
     }
   }).mount('#app')
