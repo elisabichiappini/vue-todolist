@@ -28,6 +28,16 @@
         <!--main-->
         <main>
             <div class="container">
+                <!--cerca to do-->
+                <div class="input-group mb-3">
+                    <input 
+                        v-model="keyTodo" 
+                        id="search-todo" 
+                        type="text" 
+                        class="form-control" 
+                        placeholder="Cerca to do..."
+                        @keyup="searchTodo">
+                </div>
                 <!--input genera to do + bottone-->
                 <label for="text-todo" class="mb-2">Inserisci il tuo prossimo To Do</label>
                 <div class="input-group mb-3">
@@ -43,20 +53,21 @@
                         @click="addTodo" 
                         class="btn btn-info" 
                         type="button" 
-                        id="add-button">
+                        id="add-button"
+                        role="button">
                         Aggiungi
                     </button>
                 </div>
                 <!--/input genera to do + bottone-->
 
                 <!--lista to do-->
-                <ul class="list-group" v-if="todos.length > 0">
+                <ul class="list-group" v-if="searchTodo().length > 0">
                     <li 
-                        v-for="(todo, index) in todos" 
+                        v-for="(todo, index) in searchTodo()" 
                         class="list-group-item d-flex justify-content-between align-items-center"
-                        :class="checkStatus(todo.done)"
+                        :class="{done: todo.done}"
                         @click="doneModifier(index)"> 
-                        <div>
+                        <div :class="checkStatus(todo.done)">
                             {{index + 1}} - {{ todo.text }}
                         </div>
                         <i 

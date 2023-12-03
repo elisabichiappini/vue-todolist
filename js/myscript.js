@@ -9,6 +9,7 @@ const { createApp } = Vue
   createApp({
     data() {
       return {
+        keyTodo : '',
         newTodo : '',
         todos : [
           {
@@ -53,6 +54,14 @@ const { createApp } = Vue
       doneModifier (index) {
         (this.todos[index].done) ? (this.todos[index].done = false) : (this.todos[index].done = true);
         //alternativa this.todos[index].done = !this.todos[index].done;
+      },
+      searchTodo() {
+        if (this.keyTodo.trim() !== '' ) {
+          return this.todos.filter((todo) => todo.text.toLowerCase().includes(this.keyTodo.toLowerCase()));
+        }else {
+          return this.todos;
+        }
+        
       }
     }
-  }).mount('#app')
+  }).mount('#app');

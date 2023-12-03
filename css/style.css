@@ -17,3 +17,7 @@ body {
 .line-through {
     text-decoration: line-through;
 }
+
+.done {
+    background-color: rgb(188, 148, 169);
+}
