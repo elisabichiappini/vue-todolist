@@ -52,6 +52,7 @@ const { createApp } = Vue
       },
       doneModifier (index) {
         (this.todos[index].done) ? (this.todos[index].done = false) : (this.todos[index].done = true);
+        //alternativa this.todos[index].done = !this.todos[index].done;
       }
     }
   }).mount('#app')
